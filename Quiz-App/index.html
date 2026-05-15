@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Advanced Quiz Application built with HTML, CSS, and JavaScript"
+    />
+    <title>Advanced Quiz App</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="loading-screen" class="loading-screen">
+      <div class="loader-wrapper">
+        <div class="spinner"></div>
+        <h2>Loading Quiz Experience...</h2>
+        <p>Preparing your challenge...</p>
+      </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <div class="app-container">
+      <header class="app-header">
+        <div class="logo-section">
+          <h1>QuizMaster Pro</h1>
+          <p>Test your knowledge like a champion</p>
+        </div>
+
+        <div class="header-controls">
+          <!-- Theme Toggle -->
+          <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+            🌙
+          </button>
+
+          <!-- Sound Toggle -->
+          <button id="sound-toggle" class="icon-btn" aria-label="Toggle Sound">
+            🔊
+          </button>
+        </div>
+      </header>
+
+      <section id="start-screen" class="screen active-screen">
+        <div class="start-card">
+          <h2>Start Your Quiz Journey</h2>
+          <p>Customize your quiz and begin the challenge.</p>
+
+          <!-- Player Info -->
+          <div class="input-group">
+            <label for="player-name">Player Name</label>
+            <input
+              type="text"
+              id="player-name"
+              placeholder="Enter your name"
+              maxlength="30"
+            />
+          </div>
+
+          <!-- Category Selection -->
+          <div class="input-group">
+            <label for="quiz-category">Select Category</label>
+            <select id="quiz-category">
+              <option value="javascript">JavaScript</option>
+              <option value="html">HTML</option>
+              <option value="css">CSS</option>
+              <option value="general">General Knowledge</option>
+              <option value="aptitude">Aptitude</option>
+              <option value="mixed">Mixed Quiz</option>
+            </select>
+          </div>
+
+          <!-- Difficulty -->
+          <div class="input-group">
+            <label for="quiz-difficulty">Difficulty Level</label>
+            <select id="quiz-difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+
+          <!-- Question Count -->
+          <div class="input-group">
+            <label for="question-count">Number of Questions</label>
+            <select id="question-count">
+              <option value="5">5 Questions</option>
+              <option value="10" selected>10 Questions</option>
+              <option value="15">15 Questions</option>
+              <option value="20">20 Questions</option>
+            </select>
+          </div>
+
+          <!-- Settings -->
+          <div class="settings-panel">
+            <h3>Quiz Settings</h3>
+
+            <div class="setting-item">
+              <span>Instant Feedback</span>
+              <label class="switch">
+                <input type="checkbox" id="instant-feedback" />
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <span>Shuffle Questions</span>
+              <label class="switch">
+                <input type="checkbox" id="shuffle-questions" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <span>Shuffle Answers</span>
+              <label class="switch">
+                <input type="checkbox" id="shuffle-answers" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <span>Enable Timer</span>
+              <label class="switch">
+                <input type="checkbox" id="enable-timer" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <span>Show Hints</span>
+              <label class="switch">
+                <input type="checkbox" id="show-hints" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Start Button -->
+          <button id="start-quiz-btn" class="primary-btn">Start Quiz</button>
+        </div>
+      </section>
+
+      <section id="quiz-screen" class="screen">
+        <div class="quiz-layout">
+          <!-- LEFT MAIN QUIZ AREA -->
+          <div class="quiz-main">
+            <!-- Quiz Top Stats -->
+            <div class="quiz-topbar">
+              <!-- Progress Info -->
+              <div class="progress-section">
+                <div class="progress-info">
+                  <span id="question-counter"> Question 1 / 10 </span>
+                  <span id="progress-percent"> 10% </span>
+                </div>
+
+                <div class="progress-bar-wrapper">
+                  <div
+                    id="progress-bar"
+                    class="progress-bar"
+                    style="width: 10%"
+                  ></div>
+                </div>
+              </div>
+
+              <!-- Timer -->
+              <div class="timer-section">
+                <div class="timer-card">
+                  <span class="timer-label">Time Left</span>
+                  <h3 id="timer-display">15s</h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Stats -->
+            <div class="live-stats">
+              <div class="stat-card">
+                <span class="stat-label">Score</span>
+                <h3 id="live-score">0</h3>
+              </div>
+
+              <div class="stat-card">
+                <span class="stat-label">Correct</span>
+                <h3 id="correct-count">0</h3>
+              </div>
+
+              <div class="stat-card">
+                <span class="stat-label">Wrong</span>
+                <h3 id="wrong-count">0</h3>
+              </div>
+
+              <div class="stat-card">
+                <span class="stat-label">Unanswered</span>
+                <h3 id="unanswered-count">10</h3>
+              </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="question-card">
+              <!-- Category Badge -->
+              <div class="question-meta">
+                <span id="question-category-badge" class="badge">
+                  JavaScript
+                </span>
+
+                <span id="difficulty-badge" class="badge difficulty">
+                  Medium
+                </span>
+              </div>
+
+              <!-- Question -->
+              <h2 id="question-text" class="question-text">
+                What is the correct way to declare a variable in JavaScript?
+              </h2>
+
+              <!-- Hint Section -->
+              <div id="hint-box" class="hint-box hidden">
+                <p id="hint-text">Hint will appear here.</p>
+              </div>
+
+              <!-- Answer Options -->
+              <div id="options-container" class="options-container">
+                <button class="option-btn" data-option="0">
+                  A. variable x = 10;
+                </button>
+
+                <button class="option-btn" data-option="1">
+                  B. let x = 10;
+                </button>
+
+                <button class="option-btn" data-option="2">C. x := 10;</button>
+
+                <button class="option-btn" data-option="3">
+                  D. int x = 10;
+                </button>
+              </div>
+
+              <!-- Feedback Message -->
+              <div id="feedback-message" class="feedback-message hidden">
+                Correct Answer!
+              </div>
+            </div>
+
+            <!-- Lifelines -->
+            <div class="lifelines-section">
+              <button id="lifeline-5050" class="secondary-btn">50 / 50</button>
+
+              <button id="lifeline-skip" class="secondary-btn">Skip</button>
+
+              <button id="lifeline-extra-time" class="secondary-btn">
+                +10 Seconds
+              </button>
+
+              <button id="show-hint-btn" class="secondary-btn">
+                Show Hint
+              </button>
+            </div>
+
+            <!-- Navigation -->
+            <div class="quiz-navigation">
+              <button id="prev-btn" class="nav-btn" disabled>Previous</button>
+
+              <button id="next-btn" class="nav-btn">Next</button>
+
+              <button id="submit-quiz-btn" class="primary-btn">
+                Submit Quiz
+              </button>
+            </div>
+          </div>
+
+          <!-- RIGHT REVIEW PANEL -->
+          <aside class="review-panel">
+            <div class="review-header">
+              <h3>Question Navigator</h3>
+              <p>Jump to any question</p>
+            </div>
+
+            <!-- Dynamic Question Grid -->
+            <div id="question-grid" class="question-grid">
+              <button class="question-pill active">1</button>
+
+              <button class="question-pill answered">2</button>
+
+              <button class="question-pill unanswered">3</button>
+
+              <button class="question-pill unanswered">4</button>
+
+              <button class="question-pill flagged">5</button>
+
+              <button class="question-pill unanswered">6</button>
+
+              <button class="question-pill unanswered">7</button>
+
+              <button class="question-pill unanswered">8</button>
+
+              <button class="question-pill unanswered">9</button>
+
+              <button class="question-pill unanswered">10</button>
+            </div>
+
+            <!-- Legend -->
+            <div class="review-legend">
+              <div class="legend-item">
+                <span class="legend-box active-box"></span>
+                <span>Current</span>
+              </div>
+
+              <div class="legend-item">
+                <span class="legend-box answered-box"></span>
+                <span>Answered</span>
+              </div>
+
+              <div class="legend-item">
+                <span class="legend-box unanswered-box"></span>
+                <span>Unanswered</span>
+              </div>
+
+              <div class="legend-item">
+                <span class="legend-box flagged-box"></span>
+                <span>Flagged</span>
+              </div>
+            </div>
+
+            <!-- Review Actions -->
+            <div class="review-actions">
+              <button id="flag-question-btn" class="secondary-btn full-width">
+                Flag Question
+              </button>
+
+              <button id="review-answers-btn" class="secondary-btn full-width">
+                Review Answers
+              </button>
+            </div>
+
+            <!-- Best Score -->
+            <div class="best-score-card">
+              <span>Best Score</span>
+              <h3 id="best-score">0%</h3>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="result-screen" class="screen">
+        <div class="result-wrapper">
+          <!-- Result Header -->
+          <div class="result-header">
+            <h2 id="result-title">Quiz Completed!</h2>
+
+            <p id="result-subtitle">
+              Great effort! Here is your performance summary.
+            </p>
+          </div>
+
+          <!-- Main Score Card -->
+          <div class="score-summary-card">
+            <div class="score-circle">
+              <span id="final-percentage">85%</span>
+            </div>
+
+            <div class="score-text-content">
+              <h3 id="player-result-name">Great job, Player!</h3>
+
+              <p id="grade-display">Grade: A</p>
+
+              <p id="pass-fail-status">Status: PASS</p>
+            </div>
+          </div>
+
+          <!-- Detailed Stats -->
+          <div class="result-stats-grid">
+            <div class="result-stat-card">
+              <span>Total Questions</span>
+              <h3 id="total-questions-result">10</h3>
+            </div>
+
+            <div class="result-stat-card">
+              <span>Correct Answers</span>
+              <h3 id="correct-result">8</h3>
+            </div>
+
+            <div class="result-stat-card">
+              <span>Wrong Answers</span>
+              <h3 id="wrong-result">2</h3>
+            </div>
+
+            <div class="result-stat-card">
+              <span>Unanswered</span>
+              <h3 id="unanswered-result">0</h3>
+            </div>
+
+            <div class="result-stat-card">
+              <span>Final Score</span>
+              <h3 id="final-score-points">80</h3>
+            </div>
+
+            <div class="result-stat-card">
+              <span>Best Score</span>
+              <h3 id="best-score-result">95%</h3>
+            </div>
+          </div>
+
+          <!-- Result Actions -->
+          <div class="result-actions">
+            <button id="review-result-btn" class="secondary-btn">
+              Review Answers
+            </button>
+
+            <button id="download-result-btn" class="secondary-btn">
+              Download Result
+            </button>
+
+            <button id="restart-quiz-btn" class="primary-btn">
+              Play Again
+            </button>
+          </div>
+
+          <!-- Leaderboard -->
+          <div class="leaderboard-section">
+            <div class="leaderboard-header">
+              <h3>Leaderboard</h3>
+              <p>Top performers</p>
+            </div>
+
+            <div id="leaderboard-list" class="leaderboard-list">
+              <div class="leaderboard-item">
+                <span>#1 Ashish</span>
+                <span>95%</span>
+              </div>
+
+              <div class="leaderboard-item">
+                <span>#2 Rahul</span>
+                <span>90%</span>
+              </div>
+
+              <div class="leaderboard-item">
+                <span>#3 Priya</span>
+                <span>88%</span>
+              </div>
+            </div>
+
+            <button id="clear-leaderboard-btn" class="danger-btn">
+              Clear Leaderboard
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div id="review-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Answer Review</h3>
+
+            <button
+              id="close-review-modal"
+              class="close-btn"
+              aria-label="Close Review"
+            >
+              ×
+            </button>
+          </div>
+
+          <div id="review-list" class="review-list">
+            <!-- Dynamic Review Items -->
+
+            <div class="review-item">
+              <h4>Q1. What is JavaScript?</h4>
+
+              <p>
+                Your Answer:
+                <span class="wrong-answer"> Programming Markup Language </span>
+              </p>
+
+              <p>
+                Correct Answer:
+                <span class="correct-answer"> Programming Language </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END APP CONTAINER -->
+
+    <audio id="correct-sound" preload="auto">
+      <source src="assets/dragon-studio-correct-472358.mp3" type="audio/mpeg" />
+    </audio>
+
+    <audio id="wrong-sound" preload="auto">
+      <source src="assets/universfield-error-04-199275.mp3" type="audio/mpeg" />
+    </audio>
+
+    <audio id="complete-sound" preload="auto">
+      <source src="assets/freesound_community-level-win-6416.mp3" type="audio/mpeg" />
+    </audio>
+
+    <audio id="click-sound" preload="auto">
+      <source src="assets/matthewvakaliuk73627-mouse-click-290204.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
