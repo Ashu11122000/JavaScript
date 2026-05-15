@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Clock & Stopwatch</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="bg-shape shape-1"></div>
+      <div class="bg-shape shape-2"></div>
+      <div class="bg-shape shape-3"></div>
+
+      <header class="app-header">
+        <div class="brand">
+          <h1>Digital Clock & Stopwatch</h1>
+          <p>Time Utilities</p>
+        </div>
+
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+          <span class="theme-icon">🌙</span>
+        </button>
+      </header>
+
+      <main class="main-content">
+        <section class="card clock-card">
+          <div class="section-header">
+            <h2>Digital Clock</h2>
+            <span class="status-badge live">Live</span>
+          </div>
+
+          <div class="clock-display">
+            <div class="time-wrapper">
+              <span id="hours">00</span>
+              <span class="separator">:</span>
+              <span id="minutes">00</span>
+              <span class="separator">:</span>
+              <span id="seconds">00</span>
+            </div>
+
+            <div class="meridiem-wrapper">
+              <span id="ampm">AM</span>
+            </div>
+          </div>
+
+          <div class="date-info">
+            <div class="date-box">
+              <span class="label">Day</span>
+              <span id="day">Monday</span>
+            </div>
+
+            <div class="date-box">
+              <span class="label">Date</span>
+              <span id="date">01-Jan-2026</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card stopwatch-card">
+          <div class="section-header">
+            <h2>Stopwatch</h2>
+            <span class="status-badge">READY</span>
+          </div>
+
+          <div class="stopwatch-display">
+            <span id="swHours">00</span>
+            <span class="separator">:</span>
+            <span id="swMinutes">00</span>
+            <span class="separator">:</span>
+            <span id="swSeconds">00</span>
+            <span class="separator">:</span>
+            <span id="swMilliseconds">000</span>
+          </div>
+
+          <div class="stopwatch-controls">
+            <button id="startBtn" class="control-btn start-btn">Start</button>
+            <button id="pauseBtn" class="control-btn pause-btn">Pause</button>
+            <button id="resetBtn" class="control-btn reset-btn">Reset</button>
+            <button id="lapBtn" class="control-btn lap-btn">Lap</button>
+          </div>
+
+          <div class="lap-section">
+            <div class="lap-header">
+              <h3>Lap Records</h3>
+              <button id="clearLapsBtn" class="clear-laps-btn">
+                Clear All
+              </button>
+            </div>
+
+            <ul id="lapList" class="lap-list">
+              <li class="empty-lap-message">No lap records yet</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <p>Built with HTML, CSS & JavaScript</p>
+      </footer>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
