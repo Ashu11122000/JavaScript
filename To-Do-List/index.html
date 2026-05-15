@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Advanced To-Do List App</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="app-container">
+            <header class="app-header">
+                <div class="header-top">
+                    <h1>To-Do Manager</h1>
+                    <button class="theme-toggle" id="themeToggle">
+                        Toggle Theme
+                    </button>
+                </div>
+
+                <p class="app-subtitle">
+                    Organize your tasks efficiently
+                </p>
+            </header>
+
+            <section class="top-controls">
+                <div class="search-box">
+                    <input type = "text" id="searchTask" placeholder="Search tasks..." />
+                </div>
+
+                <div class="filter-controls">
+                    <select id="filterStatus">
+                        <option value="all">All Tasks</option>
+                        <option value="completed">Completed</option>
+                        <option value="pending">Pending</option>
+                    </select>
+
+                    <select id="sortTasks">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="priority">Priority</option>
+                        <option value="duedate">Due Date</option>
+                        <option value="alphabetical">A-Z</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="task-input-section">
+                <form id="taskForm">
+                    <div class="main-input-row">
+                        <input type="text" id="taskInput" placeholder="Enter your task..." required />
+                        <button type="submit" id="addTaskbtn">Add Task</button>
+                    </div>
+
+                    <div class="extra-input-row">
+                        <select id="taskPriority">
+                            <option value="low">Low Priority</option>
+                            <option value="medium">Medium Priority</option>
+                            <option value="high">High Priority</option>
+                        </select>
+                        
+                        <input type="date" id="taskDueDate" />
+
+                        <input type="text" id="taskCategory" placeholder="Category" />
+                    </div>
+                </form>
+            </section>
+
+            <section class="task-stats">
+                <div class="stats-card">
+                    <h3>Total</h3>
+                    <span id=""totalTasks>0</span>
+                </div>
+
+                <div class="stats-card">
+                    <h3>Completed</h3>
+                    <span id="completedTasks">0</span>
+                </div>
+
+                <div class="stats-card">
+                    <h3>Pending</h3>
+                    <span id="pendingTasks">0</span>
+                </div>
+            </section>
+
+            <section class="bulk-action">
+                <button id="markAllComplete">Mark All Complete</button>
+                <button id="clearCompleted">Clear Completed</button>
+                <button id="clearAllTasks">Clear All</button>
+            </section>
+
+            <section class="task-list-section">            
+                <div class="list-header">
+                    <h2>Your Tasks</h2>
+                    <span id="tasksLeft">0 tasks left</span>
+                </div>
+
+                <ul id="taskList">
+                    <li class="task-item">
+                        <div class="task-left">
+                            <input type="checkbox" class="task-complete-checkbox" />
+                            <div class="task-content">
+                                <h3 class="task-title">Learn JavaScript DOM</h3>
+                                <div class="task-meta">
+                                    <span class="priority-high">High</span>
+                                    
+                                    <span class="category">Study</span>
+
+                                    <span class="due-date">2026-05-20</span></div>
+                                </div>
+                            </div>
+
+                            <div class="task-actions">
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </div>
+                        </li>
+                    </ul>
+
+                </section>
+
+                <section class="empty-state" id="emptyState">
+                    <h2>No Tasks Yet</h2>
+                    <p>Add your first task to get started.</p>
+                </section>
+            </div>
+
+            <footer class="app-footer">
+                <p>Advanced To-Do List Application</p>
+            </footer>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
