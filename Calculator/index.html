@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Advanced Calculator</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="calculator-app">
+            <header class="app-header">
+                <div class="header-left">
+                    <h1>Advanced Calculator</h1>
+                    <p>Normal + Scientific Calculator</p>
+                </div>
+                <div class="header-actions">
+                    <button id="modeToggle" class="toggle-btn">Scientific Mode</button>
+                    <button id="themetoggle" class="toggle-btn"></button>
+                </div>
+            </header>
+
+            <main class="calculator-layout">
+                <section class="calculator-panel">
+                    <div class="display-section">
+                        
+                        <div class="memory-indicators">
+                            <span id="memoryStatus">M</span>
+                            <span id="angleMode">DEG</span>
+                        </div>
+
+                        <div class="expression-display" id="expressionDisplay">0</div>
+
+                        <div class="result-display" id="resultDisplay">0</div>
+
+                        <div class="display-actions">
+                            <button id="copyResult">Copy</button>
+                            <button id="clearHistory">Clear History</button>
+                        </div>
+
+                    </div>
+
+                    <div class="memory-controls">
+                        <button data-action="mc">MC</button>
+                        <button data-action="mr">MR</button>
+                        <button data-action="mplus">M+</button>
+                        <button data-action="mminus">M-</button>
+                        <button data-action="ms">MS</button>
+                    </div>
+
+                    <div class="calculator-buttons">
+                        <button class="function-btn" data-action="clear">AC</button>
+                        <button class="function-btn" data-action="delete">DEL</button>
+                        <button class="function-btn" data-action="percent">%</button>
+                        <button class="operator-btn" data-value="/">÷</button>
+
+                        <button class="number-btn" data-value="7">7</button>
+                        <button class="number-btn" data-value="8">8</button>
+                        <button class="number-btn" data-value="9">9</button>
+                        <button class="operator-btn" data-value="*">×</button>
+
+                        <button class="number-btn" data-value="4">4</button>
+                        <button class="number-btn" data-value="5">5</button>
+                        <button class="number-btn" data-value="6">6</button>
+                        <button class="operator-btn" data-value="-">-</button>
+
+                        <button class="number-btn" data-value="1">1</button>
+                        <button class="number-btn" data-value="2">2</button>
+                        <button class="number-btn" data-value="3">3</button>
+                        <button class="operator-btn" data-value="+">+</button>
+
+                        <button class="function-btn" data-action="plusminus">+/-</button>
+                        <button class="number-btn" data-value="0">0</button>
+                        <button class="number-btn" data-value=".">.</button>
+                        <button class="equals-btn" data-action="equals">=</button>
+
+                    </div>
+
+                    <div class="scientific-panel" id="scientificPanel">
+                        <button data-scientific="sin">sin</button>
+                        <button data-scientific="cos">cos</button>
+                        <button data-scientific="tan">tan</button>
+                        <button data-scientific="log">log</button>
+                        <button data-scientific="ln">ln</button>
+
+                        <button data-scientific="sqrt">√</button>
+                        <button data-scientific="square">x²</button>
+                        <button data-scientific="power">xʸ</button>
+                        <button data-scientific="factorial">n!</button>
+                        <button data-scientific="pi">π</button>
+
+                        <button data-scientific="e">e</button>
+                        <button data-scientific="abs">|x|</button>
+                        <button data-scientific="inverse">1/x</button>
+                        <button data-scientific="exp">exp</button>
+                        <button data-scientific="mod">mod</button>
+
+                        <button data-scientific="open-bracket">(</button>
+                        <button data-scientific="close-bracket">)</button>
+                        <button id="degRadToggle">DEG/RAD</button>
+
+                    </div>
+                </section>
+
+                <aside class="history-panel">
+
+                    <div class="history-header">
+                        <h2>History</h2>
+
+                        <ul id="historyList"></ul>
+
+                        <div class="empty-history">
+                            No calculations yet.
+                        </div>
+                    </div>
+                </aside>
+            </main>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
