@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Advanced Random Quote Generator built with HTML, CSS, and JavaScript"
+    />
+    <title>Random Quote Generator Pro</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="loading-screen" class="loading-screen">
+      <div class="loader-wrapper">
+        <div class="spinner"></div>
+        <h2>Loading Quote Experience...</h2>
+        <p>Preparing inspiration for you...</p>
+      </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <div class="app-container">
+      <header class="app-header">
+        <div class="logo-section">
+          <h1>QuoteSpark Pro</h1>
+          <p>Daily inspiration with smart features</p>
+        </div>
+
+        <div class="header-controls">
+          <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+            🌙
+          </button>
+
+          <button id="voice-btn" class="icon-btn" aria-label="Read Quote">
+            🔊
+          </button>
+        </div>
+      </header>
+
+      <main class="main-layout">
+        <section class="quote-section">
+          <div class="quote-card">
+            <div class="quote-topbar">
+              <div class="quote-badge">
+                <span id="quote-category"> Motivation </span>
+              </div>
+
+              <div class="quote-counter">
+                Quotes Viewed:
+                <strong id="quote-count">0</strong>
+              </div>
+            </div>
+
+            <div id="loading-quote" class="quote-loading hidden">
+              <div class="mini-spinner"></div>
+              <p>Fetching inspiring quote...</p>
+            </div>
+
+            <div id="quote-content" class="quote-content">
+              <blockquote id="quote-text">
+                "Success is the sum of small efforts repeated day in and day
+                out."
+              </blockquote>
+
+              <p id="quote-author">— Robert Collier</p>
+
+              <p id="quote-length">Length: 68 characters</p>
+            </div>
+
+            <div class="quote-actions">
+              <button id="new-quote-btn" class="primary-btn">New Quote</button>
+
+              <button id="copy-btn" class="secondary-btn">Copy</button>
+
+              <button id="favorite-btn" class="secondary-btn">
+                ❤️ Favorite
+              </button>
+
+              <button id="download-btn" class="secondary-btn">Download</button>
+            </div>
+
+            <div class="share-actions">
+              <button id="twitter-share-btn" class="share-btn">Share X</button>
+
+              <button id="whatsapp-share-btn" class="share-btn">
+                WhatsApp
+              </button>
+
+              <button id="native-share-btn" class="share-btn">Share</button>
+            </div>
+          </div>
+        </section>
+        <aside class="sidebar">
+          <div class="control-card">
+            <h3>Quote Controls</h3>
+
+            <div class="input-group">
+              <label for="category-select"> Category </label>
+
+              <select id="category-select">
+                <option value="random">Random</option>
+                <option value="motivation">Motivation</option>
+                <option value="success">Success</option>
+                <option value="life">Life</option>
+                <option value="wisdom">Wisdom</option>
+                <option value="technology">Technology</option>
+                <option value="love">Love</option>
+                <option value="funny">Funny</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="search-input"> Search Quotes </label>
+
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Search by keyword..."
+              />
+            </div>
+
+            <div class="toggle-group">
+              <div class="toggle-item">
+                <span>Auto Refresh</span>
+
+                <label class="switch">
+                  <input type="checkbox" id="auto-refresh-toggle" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-item">
+                <span>Dark Mode</span>
+
+                <label class="switch">
+                  <input type="checkbox" id="theme-switch" />
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="favorites-card">
+            <div class="panel-header">
+              <h3>Favorites</h3>
+              <button id="clear-favorites-btn" class="small-btn">Clear</button>
+            </div>
+
+            <div id="favorites-list" class="scroll-list">
+              <div class="empty-state">No favorite quotes yet.</div>
+            </div>
+          </div>
+
+          <div class="history-card">
+            <div class="panel-header">
+              <h3>History</h3>
+              <button id="clear-history-btn" class="small-btn">Clear</button>
+            </div>
+
+            <div id="history-list" class="scroll-list">
+              <div class="empty-state">No quote history yet.</div>
+            </div>
+          </div>
+        </aside>
+      </main>
+
+      <div id="error-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Error</h3>
+
+            <button
+              id="close-modal-btn"
+              class="close-btn"
+              aria-label="Close Modal"
+            >
+              ×
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <p id="error-message">Failed to fetch quote. Please try again.</p>
+
+            <button id="retry-btn" class="primary-btn">Retry</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
